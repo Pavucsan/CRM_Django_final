@@ -105,7 +105,7 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-
+                            <form action='cusCRUD' method='POST'>
                             <div class="row">
                                 <div class="col-lg-16">
                                     <div class="table-responsive">
@@ -128,7 +128,7 @@
                                             <tbody> 
                                             {% for cus in cus %}
                                                 <tr>
-                                                    <form action='deleteCustomer' method='POST'>
+                                                    {% comment %} <form action='deleteCustomer' method='POST'> {% endcomment %}
                                                     {% csrf_token %}
                                                     <td><input type='submit' name='action' value='Delete'></td>
                                                     <td>{{cus.customer_id}}</td>
@@ -139,7 +139,7 @@
                                                     <td>{{cus.phone_number}}</td>
                                                     <td>{{cus.address}}</td>
                                                     <td>{{cus.data_registration}}</td>
-                                                    </form>
+                                                    {% comment %} </form> {% endcomment %}
                                                 </tr> 
                                             {% endfor %}                                               
                                             </tbody>
@@ -147,39 +147,39 @@
                                         <div>
                                             {{msg}}
                                         </div>
-                                        <form action='findCustomer' method='POST'>
+                                        {% comment %} <form action='findCustomer' method='POST'> {% endcomment %}
                                         {% csrf_token %}
                                         <div class="panel-footer">
                                             <div class="input-group">
                                                 <input name="fCustomer" type="text" class="form-control input-sm " placeholder="Type your message here..." />
                                                 <span class="input-group-btn">
-                                                <input type='submit' value='Search' class="btn btn-warning btn-sm " id="btn-chat">                                    
+                                                <input type='submit' name='action' value='Search' class="btn btn-warning btn-sm " id="btn-chat">                                    
                                                 </span>
                                             </div>
                                             
                                         </div>
-                                        </form>
+                                        {% comment %} </form> {% endcomment %}
                                         <!-- /.panel-footer -->
                                         {% endif %}
                                         {% comment %} Delete {% endcomment %}
                                         {% if option is 5 %}
-                                        <form action='deleteCustomer' method='POST'>
+                                        {% comment %} <form action='deleteCustomer' method='POST'> {% endcomment %}
                                         {% csrf_token %}
                                         <div class="panel-footer">
                                             <div class="input-group">
                                                 <input name="fCustomer" type="text" class="form-control input-sm " placeholder="First Name" />
                                                 <span class="input-group-btn">
-                                                <input type='submit' value='Delete' class="btn btn-warning btn-sm " id="btn-chat">                                    
+                                                <input type='submit'name='action' value='Delete' class="btn btn-warning btn-sm " id="btn-chat">                                    
                                                 </span>
                                             </div>
                                             {{msg}}
                                         </div>
-                                        </form>
+                                        {% comment %} </form> {% endcomment %}
                                         <!-- /.panel-footer -->
                                         {% endif %}
                                         {% comment %}  {% endcomment %}
                                         {% if option is 2 %}
-                                        <form action='addCustomer' method='POST'>
+                                        {% comment %} <form action='addCustomer' method='POST'> {% endcomment %}
                                         {% csrf_token %}
                                         <table class="table table-bordered table-hover table-striped">                                            
                                             <tbody>
@@ -213,13 +213,13 @@
                                                 </tr>                              
                                             </tbody>
                                         </table>
-                                        <input type='submit' value='Add' class='btn btn-sm btn-success col-lg-2'>
+                                        <input type='submit' name='action' value='Add' class='btn btn-sm btn-success col-lg-2'>
                                         <input type='reset' value='Clear' class='btn btn-sm col-lg-2'>  
-                                        </form> 
+                                        {% comment %} </form>  {% endcomment %}
                                         {% endif %}
 
                                         {% if option is 3 %}                                        
-                                        <form action='editCustomer' method='POST'>                                        
+                                        {% comment %} <form action='editCustomer' method='POST'>                                         {% endcomment %}
                                         {% csrf_token %}
                                         <table class="table table-bordered table-hover table-striped">
                                         {% for cus in cus %}                                            
@@ -270,12 +270,13 @@
                                         </div>
                                     </div>
                                     <!-- /.panel-footer -->
-                                    </form>  
+                                    {% comment %} </form>   {% endcomment %}
                                     {% endif %}
                                 </div>                               
                             </div>
                             <!-- /.row -->
                         </div>
+                        </form>
                         <!-- /.panel-body -->
                     </div>                    
                         <!-- /.panel-body -->

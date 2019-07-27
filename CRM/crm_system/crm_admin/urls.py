@@ -8,7 +8,8 @@ urlpatterns = [
     path('editCustomer',views.editCustomer,name='editCustomer'),
     path('customer',views.index,name='customer'),
     path('findCustomer',views.findCustomer,name='findCustomer'),
-    path('deleteCustomer',views.deleteCustomer,name='deleteCustomer')
+    path('deleteCustomer',views.deleteCustomer,name='deleteCustomer'),
+    path("cusCRUD", views.cusCRUD, name="cusCRUD")
 
     
 ]

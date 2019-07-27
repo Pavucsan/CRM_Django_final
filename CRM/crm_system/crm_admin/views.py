@@ -82,8 +82,7 @@ def findCustomer(request):
             msg="Customer not exist!"
             return render(request,'index.html',{'msg':msg})
         
-def deleteCustomer(request):
-    
+def deleteCustomer(request):    
     if request.method=='POST':
         # if request.POST['fCustomer'].checked:
         fname=request.POST['fCustomer']    
@@ -100,6 +99,26 @@ def deleteCustomer(request):
     # else:
     #     msg="Customer not exist!"
     #     return render(request,'index.html',{'option':3,'msg':msg})
+
+
+def cusCRUD(request):
+    if request.POST['action']=='show':
+        return findCustomer(request)
+    elif request.POST['action']=='Add':
+        return addCustomer(request)
+    elif request.POST['action']=='Update':
+        return editCustomer(request)
+    elif request.POST['action']=='Delete':
+        return deleteCustomer(request)
+    elif request.POST['action']=='Search':
+        return findCustomer(request)
+
+
+
+
+
+
+
 
 
 # Product
