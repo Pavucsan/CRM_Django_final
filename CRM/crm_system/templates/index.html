@@ -114,7 +114,7 @@
                                         <table class="table table-bordered table-hover table-striped">
                                             <thead>
                                                 <tr>
-                                                    <th></th>
+                                                    {% comment %} <th></th> {% endcomment %}
                                                     <th>Customer Id</th>
                                                     <th>First Name</th>
                                                     <th>Last Name</th>
@@ -129,7 +129,7 @@
                                             {% for cus in cus %}
                                                 <tr>
                                                     {% comment %} <form action='deleteCustomer' method='POST'> {% endcomment %}                                                    
-                                                    <td><input type='submit' name='action' value='Delete'></td>
+                                                    {% comment %} <td><input type='submit' name='action' value='Delete'></td> {% endcomment %}
                                                     <td>{{cus.customer_id}}</td>
                                                     <td name='fCustomer' value='{{cus.first_name}}'>{{cus.first_name}}</td>
                                                     <td>{{cus.last_name}}</td>
@@ -147,7 +147,7 @@
                                         <div class="input-group">
                                             <input name="fCustomer" type="text" class="form-control input-sm " placeholder="Search by First name ss" />
                                             <span class="input-group-btn">
-                                            <input type='submit' name='action' value='Search' class="btn btn-warning btn-sm " id="btn-chat">                                    
+                                            <input type='submit' name='action' value='Find' class="btn btn-warning btn-sm " id="btn-chat">                                    
                                             </span>
                                         </div>
                                     </div> 
@@ -278,24 +278,13 @@
                                         </table>      
                                             <input name="fCustomer" type="text" class="form-control input-sm " placeholder="Search by First name" />
                                             <span class="input-group-btn">
-                                            {% comment %} <input type='submit' name='action' value='Find' class="btn btn-warning btn-sm " id="btn-chat">       {% endcomment %}
+                                            <input type='submit' name='action' value='Find' class="btn btn-warning btn-sm " id="btn-chat">      
                                             <input type='submit' name='action' value='Delete' class="btn btn-warning btn-sm " id="btn-chat">                                    
                                             </span>
                                         </div>
                                     </div>                                    
                                     <!-- /.panel-footer -->
                                     {% endif %}
-{% comment %}                                     
-                                    <div class="panel-footer">
-                                        <div class="input-group">
-                                            <input name="fCustomer" type="text" class="form-control input-sm " placeholder="First Name" />
-                                            <span class="input-group-btn">   
-                                            <input type='submit' name='action' value='Search' class="btn btn-warning btn-sm " id="btn-chat">  
-                                                                      
-                                            </span>
-                                        </div>
-                                        {{msg}}
-                                    </div> {% endcomment %}
                                 </div>                               
                             </div>
                             <!-- /.row -->

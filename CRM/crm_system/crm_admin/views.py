@@ -78,6 +78,10 @@ def findCustomer(request):
         if customer.objects.filter(first_name=fname).exists():
             cus=customer.objects.filter(first_name=fname)            
             return render(request,'index.html',{'option':1,'cus':cus})
+            fname=request.POST.get('fCustomer')
+            if customer.objects.filter(first_name=fname).exists():
+                cus=customer.objects.filter(first_name=fname)            
+                return render(request,'index.html',{'option':1,'cus':cus})
         else:
             msg="Customer not exist!"
             return render(request,'index.html',{'option':1,'msg':msg})
@@ -86,14 +90,18 @@ def deleteCustomer(request):
     if request.method=='POST':
         # if request.POST['fCustomer'].checked:
         fname=request.POST['fCustomer']    
-        if customer.objects.filter(first_name=fname).exists():                
+        if customer.objects.filter(first_name=fname).exists():
+            if  request.POST['action']=='Find':
+                cus=customer.objects.filter(first_name=fname)            
+                return render(request,'index.html',{'option':5,'cus':cus})               
             msg=fname+' is deleted'
             cus=customer.objects.filter(first_name=fname) 
             cus.delete()
-            return render(request,'index.html',{'option':1,'msg':msg})
+            return render(request,'index.html',{'option':5,'msg':msg})
+            # return redirect('/')
         else:
             msg=fname+' is not exist in the customer table'
-            return render(request,'index.html',{'option':1,'msg':msg})
+            return render(request,'index.html',{'option':5,'msg':msg})
     else:
         return render(request,'index.html',{'option':5})
     # else:
@@ -104,13 +112,15 @@ def deleteCustomer(request):
 def cusCRUD(request):    
     if request.POST['action']=='Add':
         return addCustomer(request)
+
     elif request.POST['action']=='Search':
         return editCustomer(request)    
-    elif request.POST['action']=='Delete':
-        return deleteCustomer(request)  
+    # elif request.POST['action']=='Delete':
+    #     return deleteCustomer(request)  
     elif request.POST['action']=='Update':
         return editCustomer(request)
-    elif request.POST['action']=='Find':
+
+    if request.POST['action']=='Find':
         return findCustomer(request)
 
     
