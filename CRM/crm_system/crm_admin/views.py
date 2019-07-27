@@ -76,11 +76,11 @@ def findCustomer(request):
     if request.method=='POST':
         fname=request.POST.get('fCustomer')
         if customer.objects.filter(first_name=fname).exists():
-            cus=customer.objects.filter(first_name=fname)
+            cus=customer.objects.filter(first_name=fname)            
             return render(request,'index.html',{'option':1,'cus':cus})
         else:
             msg="Customer not exist!"
-            return render(request,'index.html',{'msg':msg})
+            return render(request,'index.html',{'option':1,'msg':msg})
         
 def deleteCustomer(request):    
     if request.method=='POST':
@@ -101,18 +101,19 @@ def deleteCustomer(request):
     #     return render(request,'index.html',{'option':3,'msg':msg})
 
 
-def cusCRUD(request):
-    if request.POST['action']=='show':
-        return findCustomer(request)
-    elif request.POST['action']=='Add':
+def cusCRUD(request):    
+    if request.POST['action']=='Add':
         return addCustomer(request)
+    elif request.POST['action']=='Search':
+        return editCustomer(request)    
+    elif request.POST['action']=='Delete':
+        return deleteCustomer(request)  
     elif request.POST['action']=='Update':
         return editCustomer(request)
-    elif request.POST['action']=='Delete':
-        return deleteCustomer(request)
-    elif request.POST['action']=='Search':
+    elif request.POST['action']=='Find':
         return findCustomer(request)
 
+    
 
 
 
