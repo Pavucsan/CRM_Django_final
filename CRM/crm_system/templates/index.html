@@ -245,6 +245,7 @@
                                     </div>  
                                     {% endif %}
                                     {% if option is 5 %}
+                                    {% comment %} Delete {% endcomment %}
                                     <div class="panel-footer">
                                         <div class="input-group">
                                             <table class="table table-bordered table-hover table-striped">
@@ -275,12 +276,16 @@
                                                 </tr> 
                                             {% endfor %}                                               
                                             </tbody>
-                                        </table>      
-                                            <input name="fCustomer" type="text" class="form-control input-sm " placeholder="Search by First name" />
-                                            <span class="input-group-btn">
-                                            <input type='submit' name='action' value='Find' class="btn btn-warning btn-sm " id="btn-chat">      
-                                            <input type='submit' name='action' value='Delete' class="btn btn-warning btn-sm " id="btn-chat">                                    
-                                            </span>
+                                        </table>   
+                                            <div class="panel-footer">
+                                                <div class="input-group">   
+                                                    <input name="fCustomer" type="text" value='{{fname}}' class="form-control input-sm " placeholder="Search by First name" />
+                                                    <span class="input-group-btn">
+                                                    <input type='submit' name='action' value='FindD' class="btn btn-warning btn-sm " id="btn-chat">      
+                                                    <input type='submit' name='action' value='Delete' class="btn btn-warning btn-sm " id="btn-chat">                                    
+                                                    </span>
+                                                </div>
+                                            </div> 
                                         </div>
                                     </div>                                    
                                     <!-- /.panel-footer -->

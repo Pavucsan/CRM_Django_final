@@ -89,19 +89,21 @@ def findCustomer(request):
 def deleteCustomer(request):    
     if request.method=='POST':
         # if request.POST['fCustomer'].checked:
-        fname=request.POST['fCustomer']    
-        if customer.objects.filter(first_name=fname).exists():
-            if  request.POST['action']=='Find':
+        fname=request.POST['fCustomer']  
+        if  request.POST['action']=='FindD':  
+            if customer.objects.filter(first_name=fname).exists():            
                 cus=customer.objects.filter(first_name=fname)            
-                return render(request,'index.html',{'option':5,'cus':cus})               
-            msg=fname+' is deleted'
-            cus=customer.objects.filter(first_name=fname) 
-            cus.delete()
-            return render(request,'index.html',{'option':5,'msg':msg})
+                return render(request,'index.html',{'option':5,'cus':cus,'fname':fname})               
+        elif  request.POST['action']=='Delete':  
+            if customer.objects.filter(first_name=fname).exists():            
+                cus=customer.objects.filter(first_name=fname)  
+                msg=fname+' is deleted'
+                cus.delete()
+                return render(request,'index.html',{'option':5,'msg':msg})
             # return redirect('/')
         else:
             msg=fname+' is not exist in the customer table'
-            return render(request,'index.html',{'option':5,'msg':msg})
+            return render(request,'index.html',{'option':5,'msg':msg,'fname':''})
     else:
         return render(request,'index.html',{'option':5})
     # else:
@@ -115,13 +117,18 @@ def cusCRUD(request):
 
     elif request.POST['action']=='Search':
         return editCustomer(request)    
-    # elif request.POST['action']=='Delete':
-    #     return deleteCustomer(request)  
+
+    elif request.POST['action']=='Delete':
+        return deleteCustomer(request)  
+
     elif request.POST['action']=='Update':
         return editCustomer(request)
 
     if request.POST['action']=='Find':
         return findCustomer(request)
+
+    if request.POST['action']=='FindD':
+        return deleteCustomer(request)
 
     
 
