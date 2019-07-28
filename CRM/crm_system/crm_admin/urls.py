@@ -1,15 +1,20 @@
 from django.urls import path
+from .views import classCustomer
 
 from . import views
 
+
+# object for customer class
+customer=classCustomer()
+
 urlpatterns = [
-    path('',views.index,name='index'),
-    path('addCustomer',views.addCustomer,name='addCustomer'),
-    path('editCustomer',views.editCustomer,name='editCustomer'),
-    path('customer',views.index,name='customer'),
-    path('findCustomer',views.findCustomer,name='findCustomer'),
-    path('deleteCustomer',views.deleteCustomer,name='deleteCustomer'),
-    path("cusCRUD", views.cusCRUD, name="cusCRUD")
+    path('',customer.index,name='index'),
+    path('addCustomer',customer.addCustomer,name='addCustomer'),
+    path('editCustomer',customer.editCustomer,name='editCustomer'),
+    path('customer',customer.index,name='customer'),
+    path('findCustomer',customer.findCustomer,name='findCustomer'),
+    path('deleteCustomer',customer.deleteCustomer,name='deleteCustomer'),
+    path("cusCRUD", customer.cusCRUD, name="cusCRUD")
 
     
 ]
